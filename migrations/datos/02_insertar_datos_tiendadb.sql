@@ -79,9 +79,9 @@ INSERT INTO pedidos (id_proveedor, fecha_pedido, estado) VALUES
 (5, '2024-02-19', 'Pendiente');
 
 -- =============================================
--- TABLA: detalles_ventas (5 registros)
+-- TABLA: detalle_ventas (5 registros)
 -- =============================================
-INSERT INTO detalles_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES
+INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES
 (1, 1, 1, 2450.00),  -- Smartphone
 (2, 2, 2, 185.00),   -- 2 Camisetas
 (3, 3, 1, 320.00),   -- Juego de sábanas
@@ -99,9 +99,9 @@ INSERT INTO pagos (id_venta, metodo_pago, monto, fecha_pago) VALUES
 (5, 'Tarjeta', 75.00, '2024-02-22 11:15:00');
 
 -- =============================================
--- TABLA: detalles_pedidos (5 registros)
+-- TABLA: detalle_pedidos (5 registros)
 -- =============================================
-INSERT INTO detalles_pedidos (id_pedido, id_producto, cantidad, precio_unitario) VALUES
+INSERT INTO detalle_pedidos (id_pedido, id_producto, cantidad, precio_unitario) VALUES
 (1, 1, 10, 2200.00),  -- Pedido smartphones (precio mayorista)
 (2, 2, 30, 150.00),   -- Pedido camisetas
 (3, 3, 20, 280.00),   -- Pedido sábanas
@@ -111,11 +111,11 @@ INSERT INTO detalles_pedidos (id_pedido, id_producto, cantidad, precio_unitario)
 -- =============================================
 -- ACTUALIZAR TOTALES DE VENTAS
 -- =============================================
--- Actualizar el campo total en ventas basado en detalles_ventas
+-- Actualizar el campo total en ventas basado en detalle_ventas
 UPDATE ventas v 
 SET total = (
     SELECT SUM(dv.cantidad * dv.precio_unitario) 
-    FROM detalles_ventas dv 
+    FROM detalle_ventas dv 
     WHERE dv.id_venta = v.id_venta
 );
 
@@ -138,11 +138,11 @@ SELECT 'ventas', COUNT(*) FROM ventas
 UNION ALL
 SELECT 'pedidos', COUNT(*) FROM pedidos
 UNION ALL
-SELECT 'detalles_ventas', COUNT(*) FROM detalles_ventas
+SELECT 'detalle_ventas', COUNT(*) FROM detalle_ventas
 UNION ALL
 SELECT 'pagos', COUNT(*) FROM pagos
 UNION ALL
-SELECT 'detalles_pedidos', COUNT(*) FROM detalles_pedidos;
+SELECT 'detalle_pedidos', COUNT(*) FROM detalle_pedidos;
 
 -- Confirmar transacción
 COMMIT;
