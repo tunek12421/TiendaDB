@@ -1,0 +1,28 @@
+services:
+  mysql:
+    image: mariadb:10.11
+    container_name: tiendadb-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_123
+      MYSQL_DATABASE: TiendaDB
+      MYSQL_USER: tienda_user
+      MYSQL_PASSWORD: pass_123
+    ports:
+      # Puerto para TiendaDB
+      - "3308:3306"
+    volumes:
+      # Persistencia de datos
+      - ./data:/var/lib/mysql
+      # Logs personalizados
+      - ./logs:/var/log/mysql
+      # Configuraciones personalizadas
+      - ./config:/etc/mysql/conf.d
+      # Scripts de inicialización
+      - ./migrations:/docker-entrypoint-initdb.d
+    networks:
+      - tiendadb-network
+
+networks:
+  tiendadb-network:
+    driver: bridge

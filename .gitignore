@@ -1,0 +1,40 @@
+# Docker volumes y datos persistentes
+data/
+logs/
+config/
+
+# Archivos de entorno y credenciales
+.env
+.env.local
+.env.production
+*.env
+
+# Archivos de backup de base de datos
+*.sql.backup
+*.dump
+backups/
+
+# Archivos temporales de sistema
+.DS_Store
+Thumbs.db
+
+# Logs específicos
+*.log
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules si se agrega Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de Docker
+.docker/
+
+# Archivos de configuración local específica
+docker-compose.override.yml
