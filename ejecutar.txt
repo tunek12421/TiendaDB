@@ -1,0 +1,2 @@
+
+docker exec -i tiendadb-mysql mysql -u root -proot_123 --table TiendaDB < migrations/nombre_archivo.sql
